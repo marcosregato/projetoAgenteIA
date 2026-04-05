@@ -71,6 +71,7 @@ set(MODEL_LIST
     "Llama-3.2-1B-Instruct-Q4_K_M.gguf|https://huggingface.co"
     "Phi-3.5-mini-instruct-Q4_K_M.gguf|https://huggingface.co"
     "qwen2.5-0.5b-instruct-q5_k_m.gguf|https://huggingface.co"
+    "lbfmodel.yaml|https://raw.githubusercontent.com/k_sh_sh/face_landmark_detection/master/lbfmodel.yaml"
 )
 
 set(MODEL_DIR "${CMAKE_BINARY_DIR}/models")

@@ -13,8 +13,11 @@
 static bool criarDiretorioArquivoLog(const std::string &dirPath) {
     struct stat st;
     if (stat(dirPath.c_str(), &st) == 0) {
-        if (S_ISDIR(st.st_mode)) return true;
-        return false;
+        if (S_ISDIR(st.st_mode)){
+         return true;
+        }else{
+         return false;
+        }
     }
 
     if (mkdir(dirPath.c_str(), 0755) == 0) {

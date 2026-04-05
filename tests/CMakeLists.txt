@@ -5,11 +5,18 @@ file(GLOB TEST_SOURCES "*.cpp" "*/*.cpp")
 add_executable(unit_tests ${TEST_SOURCES})
 
 # Incluir diretório de headers
-target_include_directories(unit_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(unit_tests PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include 
+    ${rapidjson_SOURCE_DIR}/include
+)
 
 # Linkar com Catch2 e dependências
 target_link_libraries(unit_tests PRIVATE 
     Catch2::Catch2WithMain
+    core
+    utils
+    core_utils
+    falaRobotica
     llama
     ${OpenCV_LIBS}
     ${FLITE_LIB}
