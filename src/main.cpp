@@ -61,17 +61,7 @@ int main() {
 
     SintetizadorVoz tts;
     tts.inicializar();
-
-    //if (tts.inicializar()) {
-    //    tts.falar("Olá! Esta é uma implementação limpa em C++ usando arquivos.");
-    //    tts.falar("Agora estou separado em arquivos de cabeçalho e arquivos de código-fonte.");
-    //}
-
-    tts.falarPortugues("Olá! Esta é uma implementação limpa em C++ usando arquivos.");
-    tts.falarPortugues("Agora estou separado em arquivos de cabeçalho e arquivos de código-fonte.");
-
-
-
+    tts.falar("Sistema inicializado com sucesso!");
 
     return 0;
 }
