@@ -88,6 +88,95 @@ cmake --build build --target projetoAgenteIA
 - Se a webcam não abrir, verifique se ela está conectada e não está em uso por outro software.
 - Para alterar a lógica de detecção ou vídeo, edite `src/main.cpp`.
 
+## Testes
+
+O projeto inclui uma suíte completa de testes para verificar todas as funcionalidades:
+
+### Menu Interativo de Testes
+
+Execute o menu principal para acessar todos os testes disponíveis:
+
+```bash
+cd build
+./tests/run_tests
+```
+
+**Ou use o script de atalho:**
+
+```bash
+./test.sh menu
+```
+
+**Opções Disponíveis:**
+- **🎥 Testes de Processamento de Imagem (interativo)**: Testes de webcam e detecção facial com opções interativas
+- **🔊 Testes de Voz (simples)**: Testes dos motores Flite e eSpeak-ng
+- **📋 Testes Unitários**: Testes automatizados com framework Catch2
+- **🎯 Todos os testes (automático)**: Execução completa da suíte de testes
+
+### Testes Individuais
+
+#### Testes de Processamento de Imagem
+```bash
+cd build
+./tests/test_image_processor
+```
+
+#### Testes de Voz
+```bash
+cd build
+./tests/test_voice_simple
+```
+
+#### Testes Unitários
+```bash
+cd build
+./tests/unit_tests
+```
+
+### Testes Interativos
+
+Os testes de processamento de imagem oferecem modos interativos que utilizam hardware real:
+
+- **Modo Seguro**: Verificação rápida sem abrir hardware
+- **Modo Interativo**: Teste completo com webcam em tempo real
+- **Segurança**: Avisos claros, contagem regressiva e encerramento com ESC
+
+Para mais detalhes, consulte `docs/INTERACTIVE_TESTS.md`.
+
+### Script de Atalho
+
+Para facilitar o uso dos testes, utilize o script `test.sh`:
+
+```bash
+./test.sh [opção]
+```
+
+**Comandos disponíveis:**
+- `./test.sh menu` - Abre o menu interativo
+- `./test.sh image` - Testa processamento de imagem
+- `./test.sh voice` - Testa síntese de voz
+- `./test.sh unit` - Testa unitários
+- `./test.sh all` - Executa todos os testes
+- `./test.sh build` - Compila o projeto
+- `./test.sh clean` - Limpa o build
+- `./test.sh help` - Mostra ajuda
+
+O script automaticamente compila os testes se necessário e oferece saída colorida para melhor visualização.
+
+### Verificação do .gitignore
+
+Para verificar se o .gitignore está funcionando corretamente:
+
+```bash
+./check_gitignore.sh
+```
+
+Este script verifica:
+- Arquivos de build estão sendo ignorados
+- Executáveis de teste estão ignorados
+- Padrões importantes estão configurados
+- Status do repositório Git
+
 ## Execução sem detecção facial
 
 Se quiser apenas abrir a webcam sem detectar rostos, ajuste `src/main.cpp` comentando a chamada de detecção:
