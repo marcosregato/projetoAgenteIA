@@ -163,6 +163,20 @@ Para facilitar o uso dos testes, utilize o script `test.sh`:
 
 O script automaticamente compila os testes se necessário e oferece saída colorida para melhor visualização.
 
+### Verificação do .gitignore
+
+Para verificar se o .gitignore está funcionando corretamente:
+
+```bash
+./check_gitignore.sh
+```
+
+Este script verifica:
+- Arquivos de build estão sendo ignorados
+- Executáveis de teste estão ignorados
+- Padrões importantes estão configurados
+- Status do repositório Git
+
 ## Execução sem detecção facial
 
 Se quiser apenas abrir a webcam sem detectar rostos, ajuste `src/main.cpp` comentando a chamada de detecção:

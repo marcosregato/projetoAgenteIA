@@ -26,6 +26,9 @@ Makefile
 *.depend
 *.workspace
 *.cbp.bak
+.idea/
+*.sublime-*
+*.sublime-workspace
 
 # OS files
 .DS_Store
@@ -33,18 +36,31 @@ Thumbs.db
 *.swp
 *.swo
 *~
+.directory
 
 # Logs and temporary files
 logs/
 *.log
 *.tmp
+*.cache
 
 # Downloaded models (uncomment if you want to ignore large model files)
 # models/
+*.gguf
+*.bin
+*.safetensors
 
-# Test executables
+# Test executables and outputs
 tests/*_test
 tests/*.exe
+tests/test_*
+tests/run_tests
+tests/test_voice_engines
+tests/test_voice_simple
+tests/test_image_processor
+tests/unit_tests
+test_results/
+coverage/
 
 # External dependencies (if not committed)
 extern/
@@ -52,3 +68,80 @@ llama/
 
 # Node modules or other (if applicable)
 node_modules/
+
+# Documentation build
+docs/_build/
+docs/.doxygen/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Performance profiling
+*.prof
+*.perf
+*.trace
+
+# Core dumps
+core
+core.*
+
+# Package files
+*.deb
+*.rpm
+*.dmg
+*.pkg
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Local configuration
+config.local.*
+settings.local.*
+
+# Temporary test files
+/tmp/test_*
+*.test
+
+# Audio/video test outputs
+*.mp4
+*.avi
+*.mov
+*.wav
+*.mp3
+
+# Cache directories
+.cache/
+__pycache__/
+.pytest_cache/
+
+# IDE specific files
+*.sublime-project
+*.code-workspace
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Compiler specific
+*.d
+*.ii
+*.s
+*.su
+*.idb
+*.pdb
+*.ilk
+*.exp
+
+# Make artifacts
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.ilk
+*.exp
