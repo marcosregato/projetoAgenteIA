@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# 1. Configurações de Caminhos
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD_DIR="$PROJECT_DIR/build"
+LOG_DIR="$BUILD_DIR/historico_logs"
+mkdir -p "$LOG_DIR"
+
+DATA_HORA=$(date +"%Y-%m-%d_%H-%M-%S")
+LOG_HISTORICO="$LOG_DIR/log_$DATA_HORA.txt"
+LOG_RECENTE="$BUILD_DIR/log_recente.txt"
+
+# Limpar terminal
+clear
+echo "--- Iniciando Build: $DATA_HORA ---"
+
+# 1.5 Verificar Dependências de Áudio
+echo "Verificando dependências de áudio..."
+DEPENDENCIAS=("espeak-ng" "libespeak-ng-dev" "flite1-dev")
+FALTANDO=()
+
+for pkg in "${DEPENDENCIAS[@]}"; do
+    if ! dpkg -s "$pkg" >/dev/null 2>&1; then
+        FALTANDO+=("$pkg")
+    fi
+done
+
+if [ ${#FALTANDO[@]} -ne 0 ]; then
+    echo -e "\e[31m[!] Erro: As seguintes dependências estão faltando: ${FALTANDO[*]}\e[0m"
+    echo "Por favor, execute: sudo apt-get install ${FALTANDO[*]}"
+    exit 1
+fi
+
+# 2. Preparar ambiente
+mkdir -p "$BUILD_DIR"
+
+# 3. Executar Configuração e Compilação
+{
+    echo "--- CONFIGURAÇÃO ---"
+    cmake -S "$PROJECT_DIR" -B "$BUILD_DIR"
+    CONFIG_RES=$?
+    
+    if [ $CONFIG_RES -eq 0 ]; then
+        echo -e "\n--- COMPILAÇÃO ---"
+        cmake --build "$BUILD_DIR"
+        BUILD_RES=$?
+    else
+        BUILD_RES=$CONFIG_RES
+    fi
+} > "$LOG_RECENTE" 2>&1
+
+RESULTADO=$BUILD_RES
+cp "$LOG_RECENTE" "$LOG_HISTORICO"
+
+# 4. Limpeza de Histórico (Manter os 5 mais recentes)
+ls -1t "$LOG_DIR"/log_*.txt 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null
+
+# 5. Notificações e Feedback
+if [ $RESULTADO -ne 0 ]; then
+    MSG="Erro na compilação! Verifique: build/log_recente.txt"
+    [ -f /usr/share/sounds/freedesktop/stereo/dialog-error.oga ] && paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga &
+    notify-send "Build Failed" "$MSG" --urgency=critical
+    MSG="Erro na compilação! Verifique o log."
+    echo -e "\e[31m[!] Build falhou. Detalhes em: $LOG_RECENTE\e[0m"
+    
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga 2>/dev/null
+        notify-send "CMake Alert" "$MSG" --urgency=critical
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        osascript -e "beep 2" -e "display notification \"$MSG\" with title \"CMake Alert\""
+    fi
+    exit $RESULTADO
+else
+    notify-send "Build Success" "Projeto compilado com sucesso!"
+    echo -e "\e[32m[OK] Build finalizado com sucesso!\e[0m"
+fi
