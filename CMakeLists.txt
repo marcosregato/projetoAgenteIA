@@ -148,6 +148,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(llama.cpp)
 
+# whisper.cpp (reconhecimento de fala)
+FetchContent_Declare(
+  whisper.cpp
+  GIT_REPOSITORY https://github.com/ggerganov/whisper.cpp
+  GIT_TAG        master
+)
+FetchContent_MakeAvailable(whisper.cpp)
+
 # --- 3. Configuração de Testes ---
 enable_testing()
 
@@ -157,6 +165,7 @@ set(MODEL_LIST
     "Phi-3.5-mini-instruct-Q4_K_M.gguf|https://huggingface.co"
     "qwen2.5-0.5b-instruct-q5_k_m.gguf|https://huggingface.co"
     "lbfmodel.yaml|https://raw.githubusercontent.com/k_sh_sh/face_landmark_detection/master/lbfmodel.yaml"
+    "base.en.bin|https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin"
 )
 
 set(MODEL_DIR "${CMAKE_BINARY_DIR}/models")

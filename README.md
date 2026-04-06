@@ -7,6 +7,7 @@ Projeto em C++ que integra:
 - detecção facial com OpenCV
 - síntese de voz com Flite
 - suporte a modelos LLM via llama.cpp
+- reconhecimento de fala com whisper.cpp
 - gerenciamento de dependências com CMake
 
 ## Requisitos
@@ -162,6 +163,34 @@ Para facilitar o uso dos testes, utilize o script `test.sh`:
 - `./test.sh help` - Mostra ajuda
 
 O script automaticamente compila os testes se necessário e oferece saída colorida para melhor visualização.
+
+### Download de Modelos
+
+O projeto suporta download automático de modelos durante o build:
+
+```bash
+cmake --build build
+```
+
+**Modelos incluídos automaticamente:**
+- **LLMs**: Llama-3.2-1B, Phi-3.5-mini, qwen2.5-0.5b
+- **Whisper**: base.en (reconhecimento de fala em inglês)
+- **Face Detection**: lbfmodel.yaml
+
+**Download manual de modelos Whisper:**
+
+```bash
+./download-models.sh base.en    # Modelo base recomendado
+./download-models.sh tiny.en    # Modelo pequeno
+./download-models.sh help       # Lista todos os modelos
+```
+
+**Modelos Whisper disponíveis:**
+- `base.en` - 141MB (recomendado para uso geral)
+- `tiny.en` - 39MB (mais rápido, menos preciso)
+- `small.en` - 466MB (bom equilíbrio)
+- `medium.en` - 1.5GB (melhor precisão)
+- `large` - 2.9GB (máxima precisão)
 
 ### Verificação do .gitignore
 

@@ -49,6 +49,7 @@ logs/
 *.gguf
 *.bin
 *.safetensors
+ggml-*.bin
 
 # Test executables and outputs
 tests/*_test
