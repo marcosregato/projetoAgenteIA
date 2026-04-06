@@ -10,7 +10,7 @@
 
 LogSistema logger;
 
-int ManipularArquivoCsv::lerArquivoCsv(std::string nomeArquivo){
+int ManipularArquivo::lerArquivoCsv(std::string nomeArquivo){
 
     std::ifstream arquivo(nomeArquivo);
 
@@ -42,7 +42,7 @@ int ManipularArquivoCsv::lerArquivoCsv(std::string nomeArquivo){
 
 }
 
-int ManipularArquivoCsv::criarArquivoCsv(std::string nomeArquivo){
+int ManipularArquivo::criarArquivoCsv(std::string nomeArquivo){
 
     std::ofstream arquivo(nomeArquivo);
 
@@ -67,7 +67,7 @@ int ManipularArquivoCsv::criarArquivoCsv(std::string nomeArquivo){
 
 }
 
-int ManipularArquivoCsv::lerArquivoJson(std::string nomeArquivo){
+int ManipularArquivo::lerArquivoJson(std::string nomeArquivo){
 
     FILE* arqJson = fopen(nomeArquivo.c_str(), "r");
     char readBuffer[65536];

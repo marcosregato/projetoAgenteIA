@@ -2,7 +2,7 @@
 #define MANIPULARAQUIVOCSV_H
 #include <string>
 
-class ManipularArquivoCsv{
+class ManipularArquivo{
 
 public:
     int lerArquivoCsv(std::string nomeArquivo);
