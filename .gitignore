@@ -75,9 +75,8 @@ docs/_build/
 docs/.doxygen/
 
 # Backup files
-*.bak
-*.backup
-*.old
+scripts_backup_*/
+unify_scripts.sh
 
 # Environment files
 .env

@@ -144,6 +144,32 @@ Os testes de processamento de imagem oferecem modos interativos que utilizam har
 
 Para mais detalhes, consulte `docs/INTERACTIVE_TESTS.md`.
 
+### Script Unificado
+
+Para facilitar o uso, utilize o script unificado `scripts.sh` que combina todas as funcionalidades:
+
+```bash
+./scripts.sh [comando] [opções]
+```
+
+**Comandos Principais:**
+- `./scripts.sh test menu` - Menu interativo de testes
+- `./scripts.sh models base.en` - Baixar modelo Whisper
+- `./scripts.sh build` - Compilar projeto
+- `./scripts.sh git check` - Verificar .gitignore
+- `./scripts.sh utils setup` - Configurar dependências
+- `./scripts.sh info` - Informações do projeto
+
+**Categorias Disponíveis:**
+- 🧪 **Testes**: test menu, test image, test voice, test unit, test all
+- 📥 **Modelos**: models base.en, models tiny.en, models all, models help
+- 🔧 **Build**: build, build clean, build models
+- 📁 **Git**: git check, git status, git clean
+- 🛠️ **Utilitários**: utils setup, utils flite, utils opencv, utils clean
+- ℹ️ **Info**: info, help
+
+O script unificado substitui os scripts individuais e oferece uma interface centralizada para todas as operações do projeto.
+
 ### Script de Atalho
 
 Para facilitar o uso dos testes, utilize o script `test.sh`:
