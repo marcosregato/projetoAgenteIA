@@ -290,13 +290,12 @@ sudo apt-get install -y \
 
 ## 📝 Notas
 
-> **Este documento está em constante atualização** conforme novos recursos são descobertos e implementados. Contribuições são bem-vindas!
+> **Este documento está em constante atualização** conforme novos recursos são descobertos e implementados. 
 
 ---
 
 **Última atualização**: Abril 2026  
 **Versão**: 1.0  
-**Autor**: projetoAgenteIA Team
 
 ---
 
