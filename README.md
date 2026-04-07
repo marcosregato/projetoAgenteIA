@@ -241,7 +241,37 @@ Se quiser apenas abrir a webcam sem detectar rostos, ajuste `src/main.cpp` comen
 status = cam.openCam();
 ```
 
-## Modelos LLM (opcional)
+## 🏷️ Versionamento
+
+O projeto utiliza **Semantic Versioning (SemVer)** para controle de versões.
+
+### 📋 Versão Atual
+```bash
+./scripts.sh version current
+# ou
+./version.sh current
+```
+
+### 🛠️ Gerenciamento de Versões
+```bash
+# Incrementar versão
+./scripts.sh version patch    # 1.0.0 → 1.0.1
+./scripts.sh version minor    # 1.0.1 → 1.1.0
+./scripts.sh version major    # 1.1.0 → 2.0.0
+
+# Pré-lançamentos
+./scripts.sh version pre alpha  # 1.1.0 → 1.1.0-alpha.1
+./scripts.sh version release     # 1.1.0-alpha.1 → 1.1.0
+
+# Documentação completa
+./docs/VERSIONING.md
+```
+
+### 📋 Histórico de Mudanças
+- [CHANGELOG.md](./CHANGELOG.md) - Registro completo de todas as alterações
+- Tags Git: `git tag --list` - Versões lançadas
+
+## 📚 Documentação Completa
 
 Baixe modelos `.gguf` do Hugging Face quando necessário:
 
