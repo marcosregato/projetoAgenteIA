@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 3.14)
-project(projetoAgenteIA CXX)
+
+# Ler versão do arquivo VERSION
+if(EXISTS "${CMAKE_SOURCE_DIR}/VERSION")
+    file(READ "${CMAKE_SOURCE_DIR}/VERSION" PROJECT_VERSION)
+    message(STATUS "Versão do projeto: ${PROJECT_VERSION}")
+else()
+    set(PROJECT_VERSION "1.0.0")
+    message(STATUS "Arquivo VERSION não encontrado, usando versão padrão: ${PROJECT_VERSION}")
+endif()
+
+project(projetoAgenteIA VERSION ${PROJECT_VERSION} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

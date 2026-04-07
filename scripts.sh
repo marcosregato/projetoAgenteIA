@@ -57,6 +57,17 @@ show_help() {
     echo "    info             - Informações do projeto"
     echo "    help             - Esta ajuda"
     echo ""
+    echo -e "${GREEN}  🏷️  Versionamento:${NC}"
+    echo "    version current  - Mostrar versão atual"
+    echo "    version patch    - Incrementar patch"
+    echo "    version minor    - Incrementar minor"
+    echo "    version major    - Incrementar major"
+    echo "    version pre      - Criar pré-lançamento"
+    echo "    version release  - Criar lançamento"
+    echo "    version tag      - Criar tag específica"
+    echo "    version init     - Inicializar versionamento"
+    echo "    version changelog- Gerar changelog"
+    echo ""
     echo -e "${YELLOW}Exemplos:${NC}"
     echo "  $0 test menu     # Abrir menu de testes"
     echo "  $0 models base.en # Baixar modelo Whisper"
@@ -408,6 +419,21 @@ case "${1:-help}" in
             "opencv") check_opencv ;;
             "clean") clean_project ;;
             *) echo -e "${RED}❌ Utilitário inválido: $2${NC}" && exit 1 ;;
+        esac
+        ;;
+    "version")
+        case "${2:-help}" in
+            "current") ./version.sh current ;;
+            "patch") ./version.sh patch ;;
+            "minor") ./version.sh minor ;;
+            "major") ./version.sh major ;;
+            "pre") ./version.sh pre "${3}" ;;
+            "release") ./version.sh release ;;
+            "tag") ./version.sh tag "${3}" ;;
+            "init") ./version.sh init ;;
+            "changelog") ./version.sh changelog ;;
+            "help") ./version.sh help ;;
+            *) echo -e "${RED}❌ Comando de versionamento inválido: $2${NC}" && exit 1 ;;
         esac
         ;;
     "info")

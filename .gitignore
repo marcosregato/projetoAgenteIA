@@ -74,9 +74,9 @@ node_modules/
 docs/_build/
 docs/.doxygen/
 
-# Backup files
-scripts_backup_*/
-unify_scripts.sh
+# Build info
+include/build_info.hpp
+include/build_info.hpp.in
 
 # Environment files
 .env
