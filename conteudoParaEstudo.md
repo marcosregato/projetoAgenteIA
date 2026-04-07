@@ -88,6 +88,25 @@ Este documento reúne os principais recursos, tutoriais e modelos utilizados no 
   - Configuração simplificada
   - Integração com projetos
 
+### 🌳 Árvores de Decisão
+
+#### 📖 Conceitos e Fundamentos
+1. **[Árvores de Decisão - Somos Tera](https://somostera.com/blog/arvores-de-decisao)**
+   - Introdução completa ao conceito
+   - Explicação visual e intuitiva
+   - Casos de uso práticos
+
+2. **[Understanding Decision Trees](https://medium.com/@jainvidip/understanding-decision-trees-1ba0ef5f6bb4)**
+   - Guia detalhado em inglês
+   - Implementação passo a passo
+   - Exemplos de código
+
+#### 🧬 Aplicações em Saúde
+3. **[Decision Trees in Medical Diagnosis - PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10411911/)**
+   - Aplicações em diagnóstico médico
+   - Estudos de caso reais
+   - Validação científica
+
 ---
 
 ## 👁️ Processamento de Imagem e Visão Computacional
@@ -144,6 +163,7 @@ Este documento reúne os principais recursos, tutoriais e modelos utilizados no 
 | **Voz PT-BR** | eSpeak-ng | 1.50+ | Síntese de voz (português) |
 | **LLM** | llama.cpp | master | Inferência de modelos |
 | **ASR** | whisper.cpp | master | Reconhecimento de fala |
+| **ML** | Árvores de Decisão | - | Algoritmos de classificação |
 | **Testes** | Catch2 | 3.5.2 | Testes unitários |
 | **JSON** | RapidJSON | master | Processamento JSON |
 
@@ -185,7 +205,16 @@ sudo apt-get install -y \
 3. **Pontos Faciais**
    - [Facial Landmark Detection in OpenCV4](https://levelup.gitconnected.com/facial-landmark-detection-in-opencv4-616f9c1737a5)
 
-### 🎤 Fase 3: Áudio e Voz (2-3 semanas)
+### � Fase 2.5: Algoritmos de Machine Learning (1-2 semanas)
+1. **Árvores de Decisão Fundamentos**
+   - [Árvores de Decisão - Somos Tera](https://somostera.com/blog/arvores-de-decisao)
+   - [Understanding Decision Trees](https://medium.com/@jainvidip/understanding-decision-trees-1ba0ef5f6bb4)
+   
+2. **Aplicações Práticas**
+   - [Decision Trees in Medical Diagnosis](https://pmc.ncbi.nlm.nih.gov/articles/PMC10411911/)
+   - Implementação em C++ com OpenCV
+
+### � Fase 3: Áudio e Voz (2-3 semanas)
 1. **Reconhecimento de Fala**
    - [A Starter Guide to Whisper CPP](https://medium.com/@bhuwanmishra_59371/a-starter-guide-to-whisper-cpp-f238817fd876)
    
@@ -207,6 +236,17 @@ sudo apt-get install -y \
 2. **Otimização e Performance**
    - Testes e validação
    - Deploy em produção
+
+### 📊 Fase 6: Aplicações Avançadas (2-3 semanas)
+1. **Integração de Árvores de Decisão**
+   - Classificação com dados de imagem
+   - Combinação com detecção facial
+   - Pipeline completo de IA
+
+2. **Projetos Integrados**
+   - Sistema completo de visão + ML
+   - Aplicações em tempo real
+   - Otimização e deploy
 
 ---
 
