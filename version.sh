@@ -18,6 +18,7 @@ NC='\033[0m' # No Color
 VERSION_FILE="VERSION"
 CHANGELOG_FILE="CHANGELOG.md"
 BUILD_INFO_FILE="include/build_info.hpp"
+README_FILE="README.md"
 
 # Função de ajuda
 show_help() {
@@ -135,6 +136,25 @@ update_version_file() {
     local new_version=$1
     echo "$new_version" > "$VERSION_FILE"
     echo -e "${GREEN}✅ Versão atualizada para: $new_version${NC}"
+}
+
+# Atualizar README.md com nova versão
+update_readme_version() {
+    local new_version=$1
+    
+    if [[ -f "$README_FILE" ]]; then
+        # Substituir versão entre os marcadores
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            # macOS
+            sed -i '' "s/<!-- VERSION -->.*<!-- VERSION -->/<!-- VERSION -->$new_version<!-- VERSION -->/" "$README_FILE"
+        else
+            # Linux
+            sed -i "s/<!-- VERSION -->.*<!-- VERSION -->/<!-- VERSION -->$new_version<!-- VERSION -->/" "$README_FILE"
+        fi
+        echo -e "${GREEN}✅ README.md atualizado com versão: $new_version${NC}"
+    else
+        echo -e "${YELLOW}⚠️  README.md não encontrado${NC}"
+    fi
 }
 
 # Criar tag no Git
@@ -278,18 +298,21 @@ case "${1:-help}" in
     "patch")
         new_version=$(increment_version "patch")
         update_version_file "$new_version"
+        update_readme_version "$new_version"
         create_git_tag "$new_version" "Bump versão para $new_version (patch)"
         generate_build_info
         ;;
     "minor")
         new_version=$(increment_version "minor")
         update_version_file "$new_version"
+        update_readme_version "$new_version"
         create_git_tag "$new_version" "Bump versão para $new_version (minor)"
         generate_build_info
         ;;
     "major")
         new_version=$(increment_version "major")
         update_version_file "$new_version"
+        update_readme_version "$new_version"
         create_git_tag "$new_version" "Bump versão para $new_version (major)"
         generate_build_info
         ;;
@@ -301,12 +324,14 @@ case "${1:-help}" in
         fi
         new_version=$(create_pre_release "$2")
         update_version_file "$new_version"
+        update_readme_version "$new_version"
         create_git_tag "$new_version" "Pré-lançamento $new_version"
         generate_build_info
         ;;
     "release")
         new_version=$(create_release)
         update_version_file "$new_version"
+        update_readme_version "$new_version"
         create_git_tag "$new_version" "Lançamento versão $new_version"
         generate_build_info
         ;;

@@ -1,5 +1,7 @@
 # projetoAgenteIA
 
+> **Versão**: <!-- VERSION -->1.0.2<!-- VERSION --> | **Status**: 🚀 Em Desenvolvimento
+
 ## Sobre
 
 Projeto em C++ que integra:
