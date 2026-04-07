@@ -10,6 +10,7 @@ add_executable(test_voice_engines test_voice_engines.cpp)
 add_executable(test_voice_simple test_voice_simple.cpp)
 add_executable(test_image_processor test_image_processor.cpp)
 add_executable(run_tests run_tests.cpp)
+add_executable(TestManipularArquivo TestManipularArquivo.cpp)
 
 # Incluir diretório de headers para unit_tests
 target_include_directories(unit_tests PRIVATE 
@@ -51,6 +52,28 @@ target_link_libraries(unit_tests PRIVATE
 
 # Linkar test_voice_engines com dependências
 target_link_libraries(test_voice_engines PRIVATE 
+    core
+    utils
+    core_utils
+    falaRobotica
+    arquivo
+    agente
+    llama
+    ${OpenCV_LIBS}
+    ${FLITE_LIB}
+    ${FLITE_KAL_LIB}
+    ${FLITE_M_LIB}
+)
+
+# Incluir diretório de headers para TestManipularArquivo
+target_include_directories(TestManipularArquivo PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include 
+    ${rapidjson_SOURCE_DIR}/include
+)
+
+# Linkar TestManipularArquivo com dependências
+target_link_libraries(TestManipularArquivo PRIVATE 
+    Catch2::Catch2WithMain
     core
     utils
     core_utils

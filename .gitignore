@@ -78,7 +78,10 @@ docs/.doxygen/
 include/build_info.hpp
 include/build_info.hpp.in
 
-# Environment files
+# Test files
+config_inexistente.json
+test_*.csv
+test_*.json
 .env
 .env.local
 .env.*.local

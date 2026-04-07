@@ -17,7 +17,7 @@ int main() {
     LogSistema logger;
     [[maybe_unused]] VerificarArquivo verificar;
     [[maybe_unused]] Agente agente;
-    [[maybe_unused]] ManipularArquivoCsv manipularArquivoCsv;
+    [[maybe_unused]] ManipularArquivo manipularArquivo;
 
     std::cout << "OpenCV version: " << CV_VERSION << std::endl;
 

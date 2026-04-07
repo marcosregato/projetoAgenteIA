@@ -8,4 +8,4 @@ target_include_directories(arquivo PUBLIC ${CMAKE_SOURCE_DIR}/include)
 target_compile_options(arquivo PRIVATE -Wno-deprecated-declarations)
 
 # Linkar dependências, se necessário
-# target_link_libraries(arquivo PRIVATE ...)
+target_link_libraries(arquivo PRIVATE core_utils)

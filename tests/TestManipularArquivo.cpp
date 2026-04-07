@@ -13,8 +13,8 @@ void prepararArquivoCsvParaTeste(const std::string& nomeArquivo) {
     arquivo.close();
 }
 
-TEST_CASE("ManipularArquivoCsv - Operações CSV", "[arquivo][csv]") {
-    ManipularArquivoCsv manipulator;
+TEST_CASE("ManipularArquivo - Operações CSV", "[arquivo][csv]") {
+    ManipularArquivo manipulator;
     const std::string testFile = "test_temp.csv";
 
     SECTION("Criar arquivo CSV") {
@@ -33,19 +33,19 @@ TEST_CASE("ManipularArquivoCsv - Operações CSV", "[arquivo][csv]") {
     }
 
     SECTION("Erro ao ler arquivo CSV inexistente") {
-        REQUIRE(manipulator.lerArquivoCsv("arquivo_que_nao_existe.csv") == 1);
+        REQUIRE(manipulator.lerArquivoCsv("arquivo_que_nao_existe.csv") == 4);
     }
 
     // Limpeza do arquivo temporário
     std::remove(testFile.c_str());
 }
 
-TEST_CASE("ManipularArquivoCsv - Operações JSON", "[arquivo][json]") {
-    ManipularArquivoCsv manipulator;
+TEST_CASE("ManipularArquivo - Operações JSON", "[arquivo][json]") {
+    ManipularArquivo manipulator;
     
     SECTION("Erro ao ler JSON inexistente") {
-        // O método retorna 1 se o fopen falhar
-        REQUIRE(manipulator.lerArquivoJson("config_inexistente.json") == 1);
+        // O método retorna 4 se o fopen falhar
+        REQUIRE(manipulator.lerArquivoJson("arquivo_json_que_nao_existe.json") == 4);
     }
     
     // Nota: O método lerArquivoJson atual assume campos fixos ("nome", "idade").
