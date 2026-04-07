@@ -281,12 +281,24 @@ show_current_version() {
         local git_hash=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
         local git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown")
         echo -e "${BLUE}📦 Git: $git_branch@$git_hash${NC}"
+        
+        # Mostrar tags recentes
+        local latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
+        echo -e "${BLUE}🏷️  Última tag: $latest_tag${NC}"
     fi
     
     # Mostrar data da última modificação
     if [[ -f "$VERSION_FILE" ]]; then
         local mod_date=$(stat -c %y "$VERSION_FILE" 2>/dev/null || stat -f %Sm "$VERSION_FILE" 2>/dev/null)
         echo -e "${YELLOW}📅 Modificado: $mod_date${NC}"
+    fi
+    
+    # Mostrar versão no README.md
+    if [[ -f "$README_FILE" ]]; then
+        local readme_version=$(grep -o "<!-- VERSION -->.*<!-- VERSION -->" "$README_FILE" | sed 's/<!-- VERSION -->//g' | sed 's/<!-- VERSION -->//g' 2>/dev/null)
+        if [[ -n "$readme_version" ]]; then
+            echo -e "${GREEN}📖 README.md: $readme_version${NC}"
+        fi
     fi
 }
 
