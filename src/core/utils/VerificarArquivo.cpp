@@ -62,3 +62,5 @@ std::string VerificarArquivo::getLbfmodel(const std::string &nomeArquivo){
     logger.logError("Nao foi possivel encontrar: " + nomeArquivo);
     return "";
 }
+
+

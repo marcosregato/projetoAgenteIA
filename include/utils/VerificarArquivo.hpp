@@ -8,6 +8,7 @@ public:
     bool isVerificarArquivo(const std::string &nomeArquivo);
     std::string getFrontalfaceAlt2(const std::string &nomeArquivo);
     std::string getLbfmodel(const std::string &nomeArquivo);
+   
 
 
 };

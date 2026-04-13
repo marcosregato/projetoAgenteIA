@@ -135,6 +135,14 @@ Este documento reúne os principais recursos, tutoriais e modelos utilizados no 
    - Detecção simultânea de face e mãos
    - Referência para portabilidade
 
+#### 🧮 Gaussian Process Machine Learning
+5. **[Gaussian Process Machine Learning](http://gaussianprocess.org/gpml/)**
+   - Framework completo para Gaussian Processes
+   - Implementação em MATLAB e código-fonte
+   - Documentação acadêmica e tutoriais
+   - Algoritmos para regressão e classificação
+   - Aplicações em visão computacional e IA
+
 ### 🎯 Detecção de Objetos
 
 #### 📚 Haar Cascades

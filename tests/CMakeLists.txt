@@ -11,6 +11,8 @@ add_executable(test_voice_simple test_voice_simple.cpp)
 add_executable(test_image_processor test_image_processor.cpp)
 add_executable(run_tests run_tests.cpp)
 add_executable(TestManipularArquivo TestManipularArquivo.cpp)
+add_executable(GravarAudio_Test GravarAudio_Test.cpp)
+add_executable(test_sintetizador_unificado test_sintetizador_unificado.cpp)
 
 # Incluir diretório de headers para unit_tests
 target_include_directories(unit_tests PRIVATE 
@@ -28,6 +30,12 @@ target_include_directories(test_voice_engines PRIVATE
 target_include_directories(test_voice_simple PRIVATE 
     ${CMAKE_SOURCE_DIR}/include 
     ${rapidjson_SOURCE_DIR}/include
+
+# Incluir diretório de headers para test_sintetizador_unificado
+target_include_directories(test_sintetizador_unificado PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include 
+    ${rapidjson_SOURCE_DIR}/include
+)
 )
 
 # Incluir diretório de headers para run_tests
@@ -57,8 +65,9 @@ target_link_libraries(test_voice_engines PRIVATE
     core_utils
     falaRobotica
     arquivo
-    agente
-    llama
+
+    core_utils
+    falaRobotica
     ${OpenCV_LIBS}
     ${FLITE_LIB}
     ${FLITE_KAL_LIB}
@@ -87,6 +96,19 @@ target_link_libraries(TestManipularArquivo PRIVATE
     ${FLITE_M_LIB}
 )
 
+
+# Linkar test_sintetizador_unificado com dependências
+target_link_libraries(test_sintetizador_unificado PRIVATE 
+    core
+    utils
+    core_utils
+    falaRobotica
+    ${OpenCV_LIBS}
+    ${FLITE_LIB}
+    ${FLITE_KAL_LIB}
+    ${FLITE_M_LIB}
+)
+
 # Linkar run_tests com dependências
 target_link_libraries(run_tests PRIVATE 
     core
@@ -102,6 +124,27 @@ target_link_libraries(run_tests PRIVATE
     ${FLITE_M_LIB}
 )
 
+# Incluir diretório de headers para GravarAudio_Test
+target_include_directories(GravarAudio_Test PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include 
+    ${rapidjson_SOURCE_DIR}/include
+)
+
+# Linkar GravarAudio_Test com dependências
+target_link_libraries(GravarAudio_Test PRIVATE 
+    Catch2::Catch2WithMain
+    core
+    utils
+    core_utils
+    falaRobotica
+    llama
+    ${OpenCV_LIBS}
+    ${FLITE_LIB}
+    ${FLITE_KAL_LIB}
+    ${FLITE_M_LIB}
+)
+
 # Descobrir testes unitários automaticamente
 include(Catch)
 catch_discover_tests(unit_tests)
+catch_discover_tests(GravarAudio_Test)

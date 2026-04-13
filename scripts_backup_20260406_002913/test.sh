@@ -21,6 +21,9 @@ show_help() {
     echo "  ${GREEN}menu${NC}     - Abre o menu interativo de testes"
     echo "  ${GREEN}image${NC}    - Executa testes de processamento de imagem"
     echo "  ${GREEN}voice${NC}     - Executa testes de voz"
+    echo "  ${GREEN}voice-engines${NC} - Executa testes completos de motores de voz"
+    echo "  ${GREEN}arquivo${NC}  - Executa testes de manipulação de arquivos"
+    echo "  ${GREEN}audio${NC}     - Executa testes de gravação de áudio"
     echo "  ${GREEN}unit${NC}      - Executa testes unitários"
     echo "  ${GREEN}all${NC}       - Executa todos os testes"
     echo "  ${GREEN}build${NC}     - Compila o projeto e todos os testes"
@@ -31,6 +34,9 @@ show_help() {
     echo "  $0 menu      # Abre o menu interativo"
     echo "  $0 image     # Testa processamento de imagem"
     echo "  $0 voice     # Testa síntese de voz"
+    echo "  $0 voice-engines # Testa motores completos de voz"
+    echo "  $0 arquivo   # Testa manipulação de arquivos"
+    echo "  $0 audio     # Testa gravação de áudio"
     echo "  $0 build     # Compila tudo"
 }
 
@@ -92,6 +98,39 @@ test_voice() {
     ./tests/test_voice_simple
 }
 
+# Testar motores de voz completos
+test_voice_engines() {
+    if [[ ! -f "build/tests/test_voice_engines" ]]; then
+        echo -e "${YELLOW}⚠️  Compilando testes completos de voz primeiro...${NC}"
+        build_project
+    fi
+    echo -e "${BLUE}🎙️ Executando testes completos de motores de voz...${NC}"
+    cd build
+    ./tests/test_voice_engines
+}
+
+# Testar manipulação de arquivos
+test_manipular_arquivo() {
+    if [[ ! -f "build/tests/TestManipularArquivo" ]]; then
+        echo -e "${YELLOW}⚠️  Compilando testes de manipulação de arquivos primeiro...${NC}"
+        build_project
+    fi
+    echo -e "${BLUE}📁 Executando testes de manipulação de arquivos...${NC}"
+    cd build
+    ./tests/TestManipularArquivo
+}
+
+# Testar gravação de áudio
+test_gravar_audio() {
+    if [[ ! -f "build/tests/GravarAudio_Test" ]]; then
+        echo -e "${YELLOW}⚠️  Compilando testes de gravação de áudio primeiro...${NC}"
+        build_project
+    fi
+    echo -e "${BLUE}🎤 Executando testes de gravação de áudio...${NC}"
+    cd build
+    ./tests/GravarAudio_Test
+}
+
 # Testar unitários
 test_unit() {
     if [[ ! -f "build/tests/unit_tests" ]]; then
@@ -111,9 +150,19 @@ test_all() {
     fi
     echo -e "${BLUE}🎯 Executando todos os testes...${NC}"
     cd build
-    ./tests/test_image_processor
-    ./tests/test_voice_simple
+    echo -e "${YELLOW}📋 Testes unitários...${NC}"
     ./tests/unit_tests
+    echo -e "${YELLOW}📁 Testes de manipulação de arquivos...${NC}"
+    ./tests/TestManipularArquivo
+    echo -e "${YELLOW}🎤 Testes de gravação de áudio...${NC}"
+    ./tests/GravarAudio_Test
+    echo -e "${YELLOW}🔊 Testes de voz simples...${NC}"
+    ./tests/test_voice_simple
+    echo -e "${YELLOW}🎙️ Testes completos de motores de voz...${NC}"
+    ./tests/test_voice_engines
+    echo -e "${YELLOW}🎥 Testes de processamento de imagem...${NC}"
+    ./tests/test_image_processor
+    echo -e "${GREEN}🎉 Todos os testes concluídos!${NC}"
 }
 
 # Verificar parâmetros
@@ -128,6 +177,15 @@ case "${1:-help}" in
         ;;
     voice)
         test_voice
+        ;;
+    voice-engines)
+        test_voice_engines
+        ;;
+    arquivo)
+        test_manipular_arquivo
+        ;;
+    audio)
+        test_gravar_audio
         ;;
     unit)
         test_unit

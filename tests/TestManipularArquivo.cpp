@@ -2,6 +2,8 @@
 #include "arquivo/ManipularArquivo.hpp"
 #include <fstream>
 #include <cstdio>
+#include <vector>
+#include <filesystem>
 
 // Método auxiliar para criar o arquivo CSV com dados específicos para o teste
 void prepararArquivoCsvParaTeste(const std::string& nomeArquivo) {
@@ -24,20 +26,27 @@ TEST_CASE("ManipularArquivo - Operações CSV", "[arquivo][csv]") {
         std::ifstream f(testFile);
         REQUIRE(f.good());
         f.close();
+        
+        // Limpeza
+        std::remove(testFile.c_str());
     }
 
-    SECTION("Ler arquivo CSV existente") {
-        // Usamos o helper para garantir o conteúdo antes de testar a leitura
+    SECTION("Ler coluna de arquivo CSV existente") {
+        // Preparar arquivo de teste
         prepararArquivoCsvParaTeste(testFile);
-        REQUIRE(manipulator.lerArquivoCsv(testFile) == 0);
+        
+        // Testar método getColunaArquivoCsv
+        auto coluna = manipulator.getColunaArquivoCsv(testFile);
+        REQUIRE_FALSE(coluna.empty());
+        
+        // Limpeza
+        std::remove(testFile.c_str());
     }
 
-    SECTION("Erro ao ler arquivo CSV inexistente") {
-        REQUIRE(manipulator.lerArquivoCsv("arquivo_que_nao_existe.csv") == 4);
+    SECTION("Erro ao ler coluna de arquivo CSV inexistente") {
+        auto coluna = manipulator.getColunaArquivoCsv("dadoTeste.csv");
+        REQUIRE(coluna.empty());
     }
-
-    // Limpeza do arquivo temporário
-    std::remove(testFile.c_str());
 }
 
 TEST_CASE("ManipularArquivo - Operações JSON", "[arquivo][json]") {
@@ -47,7 +56,36 @@ TEST_CASE("ManipularArquivo - Operações JSON", "[arquivo][json]") {
         // O método retorna 4 se o fopen falhar
         REQUIRE(manipulator.lerArquivoJson("arquivo_json_que_nao_existe.json") == 4);
     }
+}
+
+TEST_CASE("ManipularArquivo - Operações de Fala", "[arquivo][fala]") {
+    ManipularArquivo manipulator;
+    const std::string testFile = "test_fala.txt";
     
-    // Nota: O método lerArquivoJson atual assume campos fixos ("nome", "idade").
-    // Testes mais complexos exigiriam um arquivo JSON válido de teste.
+    SECTION("Criar arquivo de fala") {
+        REQUIRE(manipulator.criarArquivoFala(testFile, "Usuario", "Ola mundo") == 0);
+        
+        std::ifstream f(testFile);
+        REQUIRE(f.good());
+        f.close();
+        
+        // Limpeza
+        std::remove(testFile.c_str());
+    }
+}
+
+TEST_CASE("ManipularArquivo - Operações de Historico", "[arquivo][historico]") {
+    ManipularArquivo manipulator;
+    const std::string testFile = "test_historico.txt";
+    
+    SECTION("Criar arquivo de historico") {
+        REQUIRE(manipulator.criarArquivoHistorico(testFile) == 0);
+        
+        std::ifstream f(testFile);
+        REQUIRE(f.good());
+        f.close();
+        
+        // Limpeza
+        std::remove(testFile.c_str());
+    }
 }

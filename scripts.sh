@@ -70,6 +70,7 @@ show_help() {
     echo ""
     echo -e "${YELLOW}Exemplos:${NC}"
     echo "  $0 test menu     # Abrir menu de testes"
+    echo "  $0 test audio    # Testar gravação de áudio"
     echo "  $0 models base.en # Baixar modelo Whisper"
     echo "  $0 build          # Compilar projeto"
     echo "  $0 git check      # Verificar .gitignore"
@@ -126,6 +127,16 @@ test_voice() {
     fi
     cd build
     ./tests/test_voice_simple
+}
+
+test_audio() {
+    echo -e "${BLUE}🎙️ Testando gravação de áudio...${NC}"
+    if [[ ! -f "build/tests/GravarAudio_Test" ]]; then
+        echo -e "${YELLOW}⚠️  Compilando testes de áudio primeiro...${NC}"
+        build_project
+    fi
+    cd build
+    ./tests/GravarAudio_Test
 }
 
 test_unit() {
@@ -364,11 +375,13 @@ case "${1:-help}" in
             "menu") run_tests ;;
             "image") test_image ;;
             "voice") test_voice ;;
-            "unit") test_unit ;;
+            "unit")  test_unit ;;
+            "audio") test_audio ;;
             "all") 
                 test_image
                 test_voice
                 test_unit
+                test_audio
                 ;;
             *) echo -e "${RED}❌ Opção de teste inválida: $2${NC}" && exit 1 ;;
         esac

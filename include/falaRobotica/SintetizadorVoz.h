@@ -3,7 +3,6 @@
 
 #include <string>
 #include <flite/flite.h>
-#include "utils/LogSistema.hpp"
 
 extern "C" {
     cst_voice *register_cmu_us_slt(); // Voz feminina
@@ -43,13 +42,7 @@ public:
 private:
     cst_voice* voz;
     bool inicializado;
-    bool eSpeakInicializado;
     MotorVoz motorAtual;
-    LogSistema logger;
-    
-    // Métodos privados para inicialização específica
-    bool inicializarFlite();
-    bool inicializarESpeak();
 };
 
 #endif
